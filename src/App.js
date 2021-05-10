@@ -1,5 +1,5 @@
 import './App.css';
-import PaymentButton from './components/paymentPage.js'
+import PaymentButton from './components/private/paymentPage.js'
 
 function App() {
   function handleToken(token, addresses) {

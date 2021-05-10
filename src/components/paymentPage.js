@@ -1,3 +1,8 @@
+// this is a sample of my checkoutButton component. 
+// my real button is in a private folder for security
+// reasons. It is added to the git ignore file to avoid 
+// publicly publishing credentials.
+
 import StripeCheckout from 'react-stripe-checkout'
 
 function checkoutButton() {
