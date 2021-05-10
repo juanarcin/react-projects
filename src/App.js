@@ -1,16 +1,20 @@
 import './App.css';
-import PaymentButton from './components/private/paymentPage.js'
+import PaymentButton from './components/private/paymentPage.js';
+import Cart from './components/cart.js';
 
-function App() {
-  function handleToken(token, addresses) {
-    console.log(token, addresses)
-  }
+function App(props) {
+  console.log(props)
+
+    fetch('https://fakestoreapi.com/products')
+            .then(res=>res.json())
+            .then(json=>console.log(json))
   return (
     <div>
-      <PaymentButton />
+      <Cart />
 
     </div>
   );
 }
+
 
 export default App;
