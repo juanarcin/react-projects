@@ -1,3 +1,5 @@
+
+import { connect } from 'react-redux';
 import { 
   Link, 
   useLocation 
@@ -49,22 +51,32 @@ const NavMenu = styled.nav`
 `;
 
 
-function NavBar(props) {
+function Nav(props) {
 
   return (
 
-      <NavMenu className={props.navStatus ? 'open' : 'closed'}>
+      <NavMenu className={props.navOpen ? 'open' : 'closed'}>
         <ul>
-          <li><Link to="/">All Products</Link></li>
-          <li><Link to="/clothing">All Clothing</Link></li>
-          <li><Link to="/womens-clothing">Women's Clothing</Link></li>
-          <li><Link to="/mens-clothing">Men's Clothing</Link></li>
-          <li><Link to="/electronics">Electronics</Link></li>
-          <li><Link to="/jewelery">Jewelery</Link></li>
-          <li><Link to="/cart">Shopping Cart</Link></li>
+          <li onClick={props.toggleNav}><Link to="/">All Products</Link></li>
+          <li onClick={props.toggleNav}><Link to="/clothing">All Clothing</Link></li>
+          <li onClick={props.toggleNav}><Link to="/womens-clothing">Women's Clothing</Link></li>
+          <li onClick={props.toggleNav}><Link to="/mens-clothing">Men's Clothing</Link></li>
+          <li onClick={props.toggleNav}><Link to="/electronics">Electronics</Link></li>
+          <li onClick={props.toggleNav}><Link to="/jewelery">Jewelery</Link></li>
+          <li onClick={props.toggleNav}><Link to="/cart">Shopping Cart</Link></li>
         </ul>
       </NavMenu>
   );
 }
 
-export default NavBar;
+const mapStateToProps = (state) => {
+  return {
+    navOpen: state.navOpen
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleNav: () => { dispatch({type: 'TOGGLE_NAV' }) }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

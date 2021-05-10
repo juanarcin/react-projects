@@ -1,4 +1,5 @@
 const initState = {
+	navOpen: false,
 	products:{},
 	shoppingCart:[]
 }
@@ -9,11 +10,6 @@ const rootReducer = (state = initState, action) => {
 			products: action.products
 		}
 	}
-
-
-
-
-
 	if(action.type === 'DELETE_PRODUCT'){
 		console.log('test')
 		let newCart = state.shoppingCart.filter(product => {
@@ -23,6 +19,15 @@ const rootReducer = (state = initState, action) => {
 		return{
 			...state,
 			shoppingCart: newCart
+		}
+	}
+	if(action.type === 'TOGGLE_NAV'){
+		let updateNav
+		state.navOpen ? updateNav = false : updateNav = true;
+
+		return{
+			...state,
+			navOpen: updateNav
 		}
 	}
 	return state

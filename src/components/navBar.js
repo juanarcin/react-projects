@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import { connect } from 'react-redux';
 import { 
   Link, 
   useLocation 
@@ -25,6 +26,15 @@ const Logo = styled.h1`
   color:#fff;
 `;
 
+const MobileNav = styled.div`
+position: absolute{
+  left: 0;
+  top:0;
+}
+  @media screen and (min-width: 600px){
+    display:none;
+  }
+`;
 
 const Toggle = styled.div`
   display:inline-block;
@@ -52,26 +62,29 @@ const Cart = styled.div`
 `;
 
 
-function NavBar() {
-   const [navOpen, toggleNav] = useState(false)
-
-   function closeNav(){
-    toggleNav(false)
-   }
-   function openNav(){
-    toggleNav(true)
-   }
-
+function NavBar(props) {
   return (
     <Header>
       <Toggle>
-        {navOpen === true ? <FaTimes onClick={closeNav} className="toggle" id="close" /> : <GiHamburgerMenu onClick={openNav} className="toggle" /> }
+        {props.navOpen === true ? <FaTimes onClick={props.toggleNav} className="toggle" id="close" /> : <GiHamburgerMenu onClick={props.toggleNav} className="toggle" /> }
       </Toggle>
       <Logo>Juans Shop</Logo>
-      <Nav navStatus={navOpen} />
       <Cart><FaShoppingCart /></Cart>
+      <MobileNav>
+        <Nav />
+      </MobileNav>
     </Header>
   );
 }
 
-export default NavBar;
+const mapStateToProps = (state) => {
+  return {
+    navOpen: state.navOpen
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleNav: () => { dispatch({type: 'TOGGLE_NAV' }) }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
