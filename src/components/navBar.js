@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import { 
   Link, 
@@ -59,17 +59,33 @@ const Cart = styled.div`
   padding: 10px;
   float: right;
   color:#fff;
+  & a{
+    color: #fff;
+  }
+`;
+const CartItems = styled.span`
+  display: inline-block;
+  background: red;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  border-radius: 10px;
+  line-height: 15px;
+  position: relative;
+  top: -5px;
+  font-size: 10px;
 `;
 
 
 function NavBar(props) {
+
   return (
     <Header>
       <Toggle>
         {props.navOpen === true ? <FaTimes onClick={props.toggleNav} className="toggle" id="close" /> : <GiHamburgerMenu onClick={props.toggleNav} className="toggle" /> }
       </Toggle>
       <Logo>Juans Shop</Logo>
-      <Cart><FaShoppingCart /></Cart>
+      <Cart>{props.itemsInCart <= 0 ? ''  : <CartItems>{ props.itemsInCart }</CartItems>}<Link to="/cart"><FaShoppingCart /></Link></Cart>
       <MobileNav>
         <Nav />
       </MobileNav>
@@ -79,7 +95,8 @@ function NavBar(props) {
 
 const mapStateToProps = (state) => {
   return {
-    navOpen: state.navOpen
+    navOpen: state.navOpen,
+    itemsInCart: state.shoppingCart.length
   }
 }
 const mapDispatchToProps = (dispatch) => {

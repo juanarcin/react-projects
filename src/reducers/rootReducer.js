@@ -21,6 +21,16 @@ const rootReducer = (state = initState, action) => {
 			shoppingCart: newCart
 		}
 	}
+	if(action.type === 'ADD_TO_CART'){
+		console.log(state)
+		return{
+			...state,
+			shoppingCart: [
+				...state.shoppingCart,
+				action.product
+			]
+		}
+	}
 	if(action.type === 'TOGGLE_NAV'){
 		let updateNav
 		state.navOpen ? updateNav = false : updateNav = true;

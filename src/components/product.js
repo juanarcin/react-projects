@@ -1,4 +1,6 @@
 
+import { connect } from 'react-redux';
+
 function Product(props) {
   return (
     <li key={props.product.id} className="productBox">
@@ -6,8 +8,15 @@ function Product(props) {
       <div className="content-width title">{props.product.title}</div>
       <div className="content-width price">{props.product.price}</div>
       <div className="content-width category">found in : {props.product.category}</div>
-      <button>view full details</button>
+      <button onClick={() => props.addToCart(props.product)} >add to cart</button> <button>view full details</button>
     </li>
   );
 }
-export default Product;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (product) => { dispatch({type: 'ADD_TO_CART', product: product }) }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Product);

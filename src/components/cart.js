@@ -10,22 +10,27 @@ function Cart(props) {
     props.deleteProduct(id)
     console.log(id)
   }
-  return (
-    <div>
-      {props.shoppingCart.map( product => {
-        return (
-          <li key={product.id}>
-            <div>{product.title}</div>
-            <div>{product.price}</div>
-            <div>{product.description}</div>
-            <div>{product.category}</div>
-            <div><img src={product.image} alt={product.title} style={imageStyles} /></div>
-            <button onClick={() => handleDelete(product.id)}>delete</button>
-          </li>
-        )
-      })}
-    </div>
-  );
+
+  if(props.shoppingCart <= 0){
+    return <p>Your cart is empty</p>
+  } else {
+    return (
+      <div>
+        {props.shoppingCart.map( product => {
+          return (
+            <li key={product.id}>
+              <div>{product.title}</div>
+              <div>{product.price}</div>
+              <div>{product.description}</div>
+              <div>{product.category}</div>
+              <div><img src={product.image} alt={product.title} style={imageStyles} /></div>
+              <button onClick={() => handleDelete(product.id)}>delete</button>
+            </li>
+          )
+        })}
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {

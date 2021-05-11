@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import {
   Switch,
@@ -17,6 +17,7 @@ import Cart from './components/cart.js';
 import Home from './components/home.js';
 
 function App(props) {
+  const [loading, setLoading] = useState(true)
 
     useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -32,23 +33,38 @@ function App(props) {
       })
       console.log(productsList)
       props.addProducts(productsList)
+      setLoading(false)
+    })
+    .finally(function(){
+      console.log()
     })
   }, [])
 
-  return (
-    <div>
+  if (loading){
+    return (
+      <div>
         <NavBar />
-        <Switch>
-          <Route path="/clothing"><Clothing /></Route>
-          <Route path="/womens-clothing"><WomensClothing /></Route>
-          <Route path="/mens-clothing"><MensClothing /></Route>
-          <Route path="/electronics"><Electronics /></Route>
-          <Route path="/jewelery"><Jewelery /></Route>
-          <Route path="/cart"><Cart /></Route>
-          <Route path="/"><Home /></Route>
-        </Switch>
-    </div>
-  );
+        Loading Store
+      </div>
+    );
+  }
+  else {
+
+    return (
+      <div>
+          <NavBar />
+          <Switch>
+            <Route path="/clothing"><Clothing /></Route>
+            <Route path="/womens-clothing"><WomensClothing /></Route>
+            <Route path="/mens-clothing"><MensClothing /></Route>
+            <Route path="/electronics"><Electronics /></Route>
+            <Route path="/jewelery"><Jewelery /></Route>
+            <Route path="/cart"><Cart /></Route>
+            <Route path="/"><Home /></Route>
+          </Switch>
+      </div>
+    );
+  }
 }
 const mapStateToProps = (state) => {
   return {
