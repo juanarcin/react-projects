@@ -1,0 +1,35 @@
+
+.productBox{
+	display:inline-block;
+	border-bottom: 1px solid #ccc;
+	padding: 20px;
+	text-align: center;
+}
+.productBox .content-width{
+}
+.title{
+	font-weight: bold;
+	font-size: 20px;
+}
+.price{
+	
+}
+.description{
+	
+}
+.category{
+	
+}
+.product-image{
+	float: left;
+	width: 100%;
+	text-align: center;
+}
+.product-image img{
+	width: 50%;
+}
+
+#products-list{
+	margin: 0;
+	padding: 0;
+}
