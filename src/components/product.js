@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
 function Product(props) {
@@ -8,7 +9,7 @@ function Product(props) {
       <div className="content-width title">{props.product.title}</div>
       <div className="content-width price">{props.product.price}</div>
       <div className="content-width category">found in : {props.product.category}</div>
-      <button onClick={() => props.addToCart(props.product)} >add to cart</button> <button>view full details</button>
+      <button onClick={() => props.addToCart(props.product)} >add to cart</button> <Link to={`products/${props.product.id}`} >view full details</Link>
     </li>
   );
 }

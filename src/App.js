@@ -14,6 +14,7 @@ import MensClothing from './components/mensClothing.js';
 import Electronics from './components/electronics.js';
 import Jewelery from './components/jewelery.js';
 import Cart from './components/cart.js';
+import ProductPage from './components/productPage.js';
 import Home from './components/home.js';
 
 function App(props) {
@@ -25,6 +26,7 @@ function App(props) {
     .then( json => {
       let productsList = {clothing:[], electronics: [], jewelery: []}
       json.forEach(function(item){
+        props.addToAllProducts(item)
         if(item.category === 'women\'s clothing' || item.category === 'men\'s clothing'){
           productsList.clothing.push(item) 
         } else {
@@ -60,6 +62,7 @@ function App(props) {
             <Route path="/electronics"><Electronics /></Route>
             <Route path="/jewelery"><Jewelery /></Route>
             <Route path="/cart"><Cart /></Route>
+            <Route path="/products/:id"><ProductPage /></Route>
             <Route path="/"><Home /></Route>
           </Switch>
       </div>
@@ -73,7 +76,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    addProducts: (products) => { dispatch({type: 'ADD_PRODUCTS', products: products }) }
+    addProducts: (products) => { dispatch({type: 'ADD_PRODUCTS', products: products }) },
+    addToAllProducts: (product) => { dispatch({type: 'ADD_TO_ALL_PRODUCTS', product: product }) }
   }
 }
 
