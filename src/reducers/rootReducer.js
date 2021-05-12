@@ -14,14 +14,14 @@ const rootReducer = (state = initState, action) => {
 	if(action.type === 'ADD_TO_ALL_PRODUCTS'){
 		let products = [...state.allProducts]
 		products.push(action.product)
-		console.log(state.allProducts)
 		return{
 			...state,
 			allProducts: products
 		}
 	}
 	if(action.type === 'DELETE_PRODUCT'){
-		console.log('test')
+		console.log(action.id)
+		console.log(state.shoppingCart)
 		let newCart = state.shoppingCart.filter(product => {
 			return action.id !== product.id
 		})

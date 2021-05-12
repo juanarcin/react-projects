@@ -5,8 +5,10 @@ import {
   Route
 } from "react-router-dom";
 import './App.css';
+import styled from 'styled-components';
 import PaymentButton from './components/private/paymentPage.js';
 import NavBar from './components/navBar.js';
+import Nav from './components/nav.js';
 
 import Clothing from './components/clothing.js';
 import WomensClothing from './components/womensClothing.js';
@@ -26,6 +28,8 @@ function App(props) {
     .then( json => {
       let productsList = {clothing:[], electronics: [], jewelery: []}
       json.forEach(function(item){
+        let dollarAmount = (Math.round(item.price * 100) / 100).toFixed(2);
+        item.price = dollarAmount
         props.addToAllProducts(item)
         if(item.category === 'women\'s clothing' || item.category === 'men\'s clothing'){
           productsList.clothing.push(item) 
@@ -33,7 +37,6 @@ function App(props) {
           productsList[item.category].push(item)
         }
       })
-      console.log(productsList)
       props.addProducts(productsList)
       setLoading(false)
     })
@@ -54,17 +57,24 @@ function App(props) {
 
     return (
       <div>
-          <NavBar />
-          <Switch>
-            <Route path="/clothing"><Clothing /></Route>
-            <Route path="/womens-clothing"><WomensClothing /></Route>
-            <Route path="/mens-clothing"><MensClothing /></Route>
-            <Route path="/electronics"><Electronics /></Route>
-            <Route path="/jewelery"><Jewelery /></Route>
-            <Route path="/cart"><Cart /></Route>
-            <Route path="/products/:id"><ProductPage /></Route>
-            <Route path="/"><Home /></Route>
-          </Switch>
+        <NavBar />
+        <div className="container">
+          <div className="sidebar">
+            <Nav />
+          </div>
+          <div className="content">
+            <Switch>
+              <Route path="/clothing"><Clothing /></Route>
+              <Route path="/womens-clothing"><WomensClothing /></Route>
+              <Route path="/mens-clothing"><MensClothing /></Route>
+              <Route path="/electronics"><Electronics /></Route>
+              <Route path="/jewelery"><Jewelery /></Route>
+              <Route path="/cart"><Cart /></Route>
+              <Route path="/products/:id"><ProductPage /></Route>
+              <Route path="/"><Home /></Route>
+            </Switch>
+          </div>
+        </div>
       </div>
     );
   }

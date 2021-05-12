@@ -1,33 +1,23 @@
 import { connect } from 'react-redux';
+import Product from './product.js';
 
 function Cart(props) {
 
-  let imageStyles = {
-    width: 100
-  }
 
-  function handleDelete(id){
-    props.deleteProduct(id)
-    console.log(id)
-  }
 
   if(props.shoppingCart <= 0){
     return <p>Your cart is empty</p>
   } else {
     return (
-      <div>
+      <div id="cart">
+        <ul id="products-list" className="cart-page">
         {props.shoppingCart.map( product => {
           return (
-            <li key={product.id}>
-              <div>{product.title}</div>
-              <div>{product.price}</div>
-              <div>{product.description}</div>
-              <div>{product.category}</div>
-              <div><img src={product.image} alt={product.title} style={imageStyles} /></div>
-              <button onClick={() => handleDelete(product.id)}>delete</button>
-            </li>
+            <Product product={product} key={product.id} />
           )
         })}
+        </ul>
+        <div class="final-total">Total: </div>
       </div>
     );
   }

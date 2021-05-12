@@ -1,6 +1,9 @@
 
 import { useParams } from "react-router-dom";
 import { connect } from 'react-redux';
+import Product from './product.js';
+
+import { FaInfoCircle } from 'react-icons/fa';
 
 function ProductPage(props) {
 	let { id } = useParams();
@@ -8,11 +11,12 @@ function ProductPage(props) {
 	console.log(displayProduct)
   return (
 		<div>
-      <h2 className="content-width title">{displayProduct.title}</h2>
-			<div className="product-image"><img src={displayProduct.image} alt={displayProduct.title} /></div>
-      <p className="content-width description">{displayProduct.description}</p>
-      <div className="content-width price">{displayProduct.price}</div>
-    
+      <ul id="products-list" className="single-product">
+      	<Product product={displayProduct} key={displayProduct.id} />
+      	<li><p className="single-product-description">{displayProduct.description}</p></li>
+      	<li><div className="add-to-cart" onClick={() => props.addToCart(displayProduct)}>Add to Cart</div></li>
+      </ul>
+
     </div>
   );
 }
