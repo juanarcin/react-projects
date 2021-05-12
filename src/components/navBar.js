@@ -14,7 +14,8 @@ import Nav from "./nav.js";
 
 const Header = styled.header`
   height: 40px;
-  position: relative;
+  width: 100%;
+  position: fixed;
   z-index: 16;
   background: #2b3a54;
 `;
@@ -24,6 +25,10 @@ const Logo = styled.h1`
   padding: 0 0 0 30px;;
   font-size: 20px;
   color:#fff;
+}
+  @media screen and (min-width: 600px){
+    padding: 0;
+  }
 `;
 
 const MobileNav = styled.div`
@@ -81,11 +86,13 @@ function NavBar(props) {
 
   return (
     <Header>
-      <Toggle>
-        {props.navOpen === true ? <FaTimes onClick={props.toggleNav} className="toggle" id="close" /> : <GiHamburgerMenu onClick={props.toggleNav} className="toggle" /> }
-      </Toggle>
-      <Logo>Juans Shop</Logo>
-      <Cart>{props.itemsInCart <= 0 ? ''  : <CartItems>{ props.itemsInCart }</CartItems>}<Link to="/cart"><FaShoppingCart /></Link></Cart>
+      <div className="container">
+        <Toggle>
+          {props.navOpen === true ? <FaTimes onClick={props.toggleNav} className="toggle" id="close" /> : <GiHamburgerMenu onClick={props.toggleNav} className="toggle" /> }
+        </Toggle>
+        <Logo>Juans Shop</Logo>
+        <Cart>{props.itemsInCart <= 0 ? ''  : <CartItems>{ props.itemsInCart }</CartItems>}<Link to="/cart"><FaShoppingCart /></Link></Cart>
+      </div>
       <MobileNav>
         <Nav />
       </MobileNav>

@@ -1,5 +1,6 @@
 const initState = {
 	navOpen: false,
+	allProducts: [],
 	products:{},
 	shoppingCart:[]
 }
@@ -10,8 +11,17 @@ const rootReducer = (state = initState, action) => {
 			products: action.products
 		}
 	}
+	if(action.type === 'ADD_TO_ALL_PRODUCTS'){
+		let products = [...state.allProducts]
+		products.push(action.product)
+		return{
+			...state,
+			allProducts: products
+		}
+	}
 	if(action.type === 'DELETE_PRODUCT'){
-		console.log('test')
+		console.log(action.id)
+		console.log(state.shoppingCart)
 		let newCart = state.shoppingCart.filter(product => {
 			return action.id !== product.id
 		})

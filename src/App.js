@@ -5,8 +5,10 @@ import {
   Route
 } from "react-router-dom";
 import './App.css';
+import styled from 'styled-components';
 import PaymentButton from './components/private/paymentPage.js';
 import NavBar from './components/navBar.js';
+import Nav from './components/nav.js';
 
 import Clothing from './components/clothing.js';
 import WomensClothing from './components/womensClothing.js';
@@ -14,6 +16,7 @@ import MensClothing from './components/mensClothing.js';
 import Electronics from './components/electronics.js';
 import Jewelery from './components/jewelery.js';
 import Cart from './components/cart.js';
+import ProductPage from './components/productPage.js';
 import Home from './components/home.js';
 
 function App(props) {
@@ -25,13 +28,15 @@ function App(props) {
     .then( json => {
       let productsList = {clothing:[], electronics: [], jewelery: []}
       json.forEach(function(item){
+        let dollarAmount = (Math.round(item.price * 100) / 100).toFixed(2);
+        item.price = dollarAmount
+        props.addToAllProducts(item)
         if(item.category === 'women\'s clothing' || item.category === 'men\'s clothing'){
           productsList.clothing.push(item) 
         } else {
           productsList[item.category].push(item)
         }
       })
-      console.log(productsList)
       props.addProducts(productsList)
       setLoading(false)
     })
@@ -52,16 +57,24 @@ function App(props) {
 
     return (
       <div>
-          <NavBar />
-          <Switch>
-            <Route path="/clothing"><Clothing /></Route>
-            <Route path="/womens-clothing"><WomensClothing /></Route>
-            <Route path="/mens-clothing"><MensClothing /></Route>
-            <Route path="/electronics"><Electronics /></Route>
-            <Route path="/jewelery"><Jewelery /></Route>
-            <Route path="/cart"><Cart /></Route>
-            <Route path="/"><Home /></Route>
-          </Switch>
+        <NavBar />
+        <div className="container">
+          <div className="sidebar">
+            <Nav />
+          </div>
+          <div className="content">
+            <Switch>
+              <Route path="/clothing"><Clothing /></Route>
+              <Route path="/womens-clothing"><WomensClothing /></Route>
+              <Route path="/mens-clothing"><MensClothing /></Route>
+              <Route path="/electronics"><Electronics /></Route>
+              <Route path="/jewelery"><Jewelery /></Route>
+              <Route path="/cart"><Cart /></Route>
+              <Route path="/products/:id"><ProductPage /></Route>
+              <Route path="/"><Home /></Route>
+            </Switch>
+          </div>
+        </div>
       </div>
     );
   }
@@ -73,7 +86,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    addProducts: (products) => { dispatch({type: 'ADD_PRODUCTS', products: products }) }
+    addProducts: (products) => { dispatch({type: 'ADD_PRODUCTS', products: products }) },
+    addToAllProducts: (product) => { dispatch({type: 'ADD_TO_ALL_PRODUCTS', product: product }) }
   }
 }
 

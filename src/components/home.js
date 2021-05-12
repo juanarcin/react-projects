@@ -6,7 +6,6 @@ function Home(props) {
 
   return (
     <ul id="products-list">
-      {console.log(props.products)}
       {Object.entries(props.products).map(([key, value]) => {
         return(
           value.map( product => {
