@@ -29,7 +29,11 @@ function App(props) {
       let productsList = {clothing:[], electronics: [], jewelery: []}
       json.forEach(function(item){
         let dollarAmount = (Math.round(item.price * 100) / 100).toFixed(2);
-        item.price = dollarAmount
+        item.price = dollarAmount;
+        item.qty = 0;
+        item.total = 0;
+        item.inCart = false;
+        item.itemsInCart = 0;
         props.addToAllProducts(item)
         if(item.category === 'women\'s clothing' || item.category === 'men\'s clothing'){
           productsList.clothing.push(item) 
@@ -39,6 +43,7 @@ function App(props) {
       })
       props.addProducts(productsList)
       setLoading(false)
+      console.log(productsList)
     })
     .finally(function(){
       console.log()

@@ -103,7 +103,7 @@ function NavBar(props) {
 const mapStateToProps = (state) => {
   return {
     navOpen: state.navOpen,
-    itemsInCart: state.shoppingCart.length
+    itemsInCart: state.itemsInCart
   }
 }
 const mapDispatchToProps = (dispatch) => {
