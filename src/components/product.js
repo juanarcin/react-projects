@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { FaInfoCircle, FaTrash } from 'react-icons/fa';
 
 function Product(props) {
-  const [price, updatePrice] = useState(props.product.price)
+  const [inCart, addToCart] = useState()
+  const [price, updatePrice] = useState(props.product.total)
     let total = 0;
 
   function storePrices(){
@@ -30,14 +31,15 @@ function Product(props) {
     props.deleteProduct(id)
     getTotal();
   }
-  function handleOnChange(e){
-    if (e <= 0){
-      alert('help')
+  function handleUpdate(value, id){
+    props.updateQty(value, id)
+    updatePrice(value)
+  }
+  function addItemToCart(product, id){
+    if(!props.product.inCart){
+      props.addToCart(product)
+      addToCart(id)
     }
-    let qty = e;
-    let updatedPrice = qty * props.product.price
-    let finalPrice = (Math.round(updatedPrice * 100) / 100).toFixed(2)
-    updatePrice(finalPrice)
   }
   return (
     <li key={props.product.id} className="productBox">
@@ -50,13 +52,14 @@ function Product(props) {
           <Link to={`products/${props.product.id}`} ><FaInfoCircle /> view full details</Link>
         </div>
       </div>  
-      <div className="add-to-cart bright" onClick={() => props.addToCart(props.product)}>Add to Cart</div>
+      <div className={props.product.inCart === false ? 'add-to-cart bright' : 'add-to-cart bright in-cart'} onClick={() => addItemToCart(props.product, props.product.id)}>
+        {props.product.inCart === false ? 'Add to Cart' : 'Added to Cart'}
+      </div>
       <div className="cart-adjust">
         <span className="trash"><FaTrash onClick={() => props.delete(props.product.id)} /></span>
-        <div class="edit-cart">
-          Qty: <input min="1" placeholder="1" className="qty" type="number" onChange={e => handleOnChange(e.target.value)} />
-          <div className="item-total">total: ${price}</div>
-          <p>{price}</p>
+        <div className="edit-cart">
+          Qty: <input min="1" value={props.product.qty} className="qty" type="number" onChange={e => handleUpdate(e.target.value, props.product.id)} />
+          <div className="item-total">total: ${parseFloat(props.product.total).toFixed(2)}</div>
         </div>
       </div>
     </li>
@@ -66,12 +69,13 @@ function Product(props) {
 const mapDispatchToProps = (dispatch) => {
   return {
     delete: (id) => { dispatch({type: 'DELETE_PRODUCT', id: id }) },
-    addToCart: (product) => { dispatch({type: 'ADD_TO_CART', product: product }) }
+    addToCart: (product) => { dispatch({type: 'ADD_TO_CART', product: product }) },
+    updateQty: (qty, id) => {dispatch({type: 'UPDATE_QTY', qty: qty, id: id})}
   }
 }
 const mapStateToProps = (state) => {
   return {
-    shoppingCart: state.shoppingCart
+    shoppingCart: state.shoppingCart,
   }
 }
 

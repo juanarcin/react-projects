@@ -1,15 +1,17 @@
 import { connect } from 'react-redux';
 import Product from './product.js';
+import { ImSad } from 'react-icons/im';
 
 function Cart(props) {
 
 
 
   if(props.shoppingCart <= 0){
-    return <p>Your cart is empty</p>
+    return <p className="center sad"><span><ImSad /></span>Your cart is empty</p>
   } else {
     return (
       <div id="cart">
+        
         <ul id="products-list" className="cart-page">
         {props.shoppingCart.map( product => {
           return (
@@ -17,7 +19,7 @@ function Cart(props) {
           )
         })}
         </ul>
-        <div class="final-total">Total: </div>
+        <div className="final-total">Total: ${parseFloat(props.total).toFixed(2)}</div>
       </div>
     );
   }
@@ -25,7 +27,8 @@ function Cart(props) {
 
 const mapStateToProps = (state) => {
   return {
-    shoppingCart: state.shoppingCart
+    shoppingCart: state.shoppingCart,
+    total: state.shoppingCartTotal
   }
 }
 const mapDispatchToProps = (dispatch) => {
