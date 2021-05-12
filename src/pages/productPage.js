@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import { useParams } from "react-router-dom";
 import { connect } from 'react-redux';
-import Product from './product.js';
+import Product from '../components/product.js';
 
 import { FaInfoCircle } from 'react-icons/fa';
 

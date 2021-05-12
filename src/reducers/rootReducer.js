@@ -7,8 +7,14 @@ const initState = {
 	itemsInCart: 0
 }
 const rootReducer = (state = initState, action) => {
+	function countItemsInCart(){
+		let productQty = []
+		state.shoppingCart.forEach(function(i){
+			productQty.push(i.qty)
+		})
+		return productQty.reduce((a, b) => a + b, 0)
+	}
 	function calculateTotal(update){
-		console.log(update)
 		let itemPrices = []
     update.forEach(function(i){
     	let itemTotal = i.price * i.qty;
@@ -19,12 +25,7 @@ const rootReducer = (state = initState, action) => {
 
     let total =  itemPrices.reduce((a, b) => a + b, 0)
 		state.shoppingCartTotal = parseFloat(total)
-
-		let productQty = []
-		state.shoppingCart.forEach(function(i){
-			productQty.push(i.qty)
-		})
-		state.itemsInCart = productQty.reduce((a, b) => a + b, 0)
+		state.itemsInCart = countItemsInCart()
 	}
 
 	if(action.type === 'ADD_PRODUCTS'){

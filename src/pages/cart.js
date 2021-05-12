@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Product from './product.js';
+import Product from '../components/product.js';
 import { ImSad } from 'react-icons/im';
 
 function Cart(props) {
