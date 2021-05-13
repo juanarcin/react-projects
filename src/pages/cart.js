@@ -11,13 +11,12 @@ function Cart(props) {
   } else {
     return (
       <div id="cart">
-        
         <ul id="products-list" className="cart-page">
-        {props.shoppingCart.map( product => {
-          return (
-            <Product product={product} key={product.id} />
-          )
-        })}
+          {props.shoppingCart.map( product => {
+            return (
+              <Product product={product} key={product.id} />
+            )
+          })}
         </ul>
         <div className="final-total">Total: ${parseFloat(props.total).toFixed(2)}</div>
       </div>

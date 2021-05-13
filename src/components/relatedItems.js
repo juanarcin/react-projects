@@ -5,21 +5,29 @@ import Product from '../components/product.js';
 
 import { FaInfoCircle } from 'react-icons/fa';
 import AddToCartButton from '../components/addToCart.js';
-import RelatedItems from '../components/relatedItems.js';
+import RelatedItem from '../components/relatedItem.js';
 
 function ProductPage(props) {
   // grab item id from the url
   let { id } = useParams();
 
-  // find item by id and display it
-  let displayProduct = props.products.find(item => item.id == id);
+  // find item by id 
+  let currentItem = props.products.find(item => item.id == id);
 
   return (
 		<div>
-      <ul id="products-list" className="single-product">
-      	<Product product={displayProduct} key={displayProduct.id} />
+      <h3 className="related-items">Related Items</h3>
+      <ul id="relatedItems">
+        {props.products.map( product => {
+          console.log(product.category, currentItem.category)
+          if(product.category === currentItem.category && product.id != currentItem.id){
+            return (
+              <li className="related-product-image" key={product.id}><RelatedItem item={product}  /></li>
+            )
+          } 
+        })}
       </ul>
-      <RelatedItems />
+
     </div>
   );
 }
