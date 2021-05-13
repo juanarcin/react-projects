@@ -10,14 +10,14 @@ import PaymentButton from './components/private/paymentPage.js';
 import NavBar from './components/navBar.js';
 import Nav from './components/nav.js';
 
-import Clothing from './components/clothing.js';
-import WomensClothing from './components/womensClothing.js';
-import MensClothing from './components/mensClothing.js';
-import Electronics from './components/electronics.js';
-import Jewelery from './components/jewelery.js';
-import Cart from './components/cart.js';
-import ProductPage from './components/productPage.js';
-import Home from './components/home.js';
+import Clothing from './pages/clothing.js';
+import WomensClothing from './pages/womensClothing.js';
+import MensClothing from './pages/mensClothing.js';
+import Electronics from './pages/electronics.js';
+import Jewelery from './pages/jewelery.js';
+import Cart from './pages/cart.js';
+import ProductPage from './pages/productPage.js';
+import Home from './pages/home.js';
 
 function App(props) {
   const [loading, setLoading] = useState(true)

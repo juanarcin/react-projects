@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import { connect } from 'react-redux';
-import Product from './product.js';
+import Product from '../components/product.js';
 
 function Jewelery(props) {
   return(

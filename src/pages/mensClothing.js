@@ -1,12 +1,12 @@
 import {useEffect} from 'react';
 import { connect } from 'react-redux';
-import Product from './product.js';
+import Product from '../components/product.js';
 
-function WomensClothing(props) {
+function MensClothing(props) {
   return(
     <ul id="products-list">
       {props.products.clothing.map( product => {
-        if(product.category === 'women\'s clothing') {
+        if(product.category === 'men\'s clothing') {
           return (
             <Product product={product} key={product.id} />
           )
@@ -22,4 +22,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(WomensClothing);
+export default connect(mapStateToProps)(MensClothing);

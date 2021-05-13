@@ -1,14 +1,13 @@
 import {useEffect} from 'react';
 import { connect } from 'react-redux';
-import Product from './product.js';
+import Product from '../components/product.js';
 
-function Clothing(props) {
+function Electronics(props) {
   return(
     <ul id="products-list">
-      {props.products.clothing.map( product => {
+      {props.products.electronics.map( product => {
         return (
-          
-            <Product product={product} key={product.id} />
+          <Product product={product} key={product.id} />
         )
       })}
     </ul>
@@ -21,4 +20,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Clothing);
+export default connect(mapStateToProps)(Electronics);
