@@ -1,34 +1,26 @@
-import {useState} from 'react';
+
 import { useParams } from "react-router-dom";
 import { connect } from 'react-redux';
 import Product from '../components/product.js';
 
 import { FaInfoCircle } from 'react-icons/fa';
+import AddToCartButton from '../components/addToCart.js';
 
 function ProductPage(props) {
-  const [inCart, addToCart] = useState()
-	let { id } = useParams();
-	let displayProduct = props.products.find(item => item.id == id);
-	console.log(displayProduct)
-  function addItemToCart(product, id){
-    if(!displayProduct.inCart){
-      props.addToCart(product)
-      addToCart(id)
-    }
-  }
+  // grab item id from the url
+  let { id } = useParams();
+
+  // find item by id and display it
+  let displayProduct = props.products.find(item => item.id == id);
+  
   return (
 		<div>
       <ul id="products-list" className="single-product">
       	<Product product={displayProduct} key={displayProduct.id} />
       	<li><p className="single-product-description">{displayProduct.description}</p></li>
       	<li>
-      	<div 
-      			className={ displayProduct.inCart === false ? 'add-to-cart' : 'add-to-cart in-cart' }  
-      			onClick={() => addItemToCart(displayProduct, displayProduct.id)}>
-      			{ displayProduct.inCart === false ? 'Add to Cart' : 'Added to Cart' } 
-    			</div>
+          <AddToCartButton product={displayProduct} />
     		</li>
-
       </ul>
 
     </div>

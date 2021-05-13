@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { FaInfoCircle, FaTrash } from 'react-icons/fa';
 
+import AddToCartButton from '../components/addToCart.js';
+
 function Product(props) {
   const [inCart, addToCart] = useState()
   const [price, updatePrice] = useState(props.product.total)
@@ -51,10 +53,9 @@ function Product(props) {
         <div className="details">
           <Link to={`products/${props.product.id}`} ><FaInfoCircle /> view full details</Link>
         </div>
-      </div>  
-      <div className={props.product.inCart === false ? 'add-to-cart bright' : 'add-to-cart bright in-cart'} onClick={() => addItemToCart(props.product, props.product.id)}>
-        {props.product.inCart === false ? 'Add to Cart' : 'Added to Cart'}
-      </div>
+        <AddToCartButton product={props.product} /> 
+      </div> 
+      
       <div className="cart-adjust">
         <span className="trash"><FaTrash onClick={() => props.delete(props.product.id)} /></span>
         <div className="edit-cart">

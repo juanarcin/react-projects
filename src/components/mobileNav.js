@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Nav from "./nav.js";
 
-const MobileNav = styled.div`
+const NavContainer = styled.div`
 position: absolute{
   left: 0;
   top:0;
@@ -13,13 +13,13 @@ position: absolute{
   }
 `;
 
-function NavBar(props) {
+function MobileNav(props) {
 
   return (
-      <MobileNav>
+      <NavContainer>
         <Nav />
-      </MobileNav>
+      </NavContainer>
   );
 }
 
-export default NavBar;
+export default MobileNav;
