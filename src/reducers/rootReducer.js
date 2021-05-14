@@ -6,8 +6,11 @@ const initState = {
 	shoppingCartTotal: 0,
 	itemsInCart: 0,
 	user:{
-		logedIn: false,
-		name: null
+		loggedIn: false,
+		name: null,
+		profilePicture: null,
+		fullName: null,
+		email: null
 	}
 }
 const rootReducer = (state = initState, action) => {
@@ -127,6 +130,24 @@ const rootReducer = (state = initState, action) => {
 		return{
 			...state,
 			allProducts: products
+		}
+	}
+
+
+	if(action.type === 'LOGIN'){
+		if(action.name === 'LOGOUT'){
+			state.user.loggedIn = false;
+			state.user.name = null;
+			state.user.profilePicture = null;
+		} else {
+			state.user.loggedIn = true;
+			state.user.name = action.name;
+			state.user.email = action.email;
+			state.user.profilePicture = action.profilePicture;
+		}
+		console.log(state.user)
+		return{
+			...state,
 		}
 	}
 	return state
