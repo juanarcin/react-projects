@@ -1,26 +1,20 @@
 import { connect } from 'react-redux';
 import Product from '../components/product.js';
+import SortedItems from '../components/sortedItems.js';
 
 function Home(props) {
 
   return (
-    <ul id="products-list">
-      {Object.entries(props.products).map(([key, value]) => {
-        return(
-          value.map( product => {
-            return (
-                <Product product={product} key={product.id} />
-            )
-          })
-        )    
-      })}
-    </ul>
+    <div id="home">
+      <SortedItems />
+    </div>
   );
 }
 
 const mapStateToProps = (state) => {
   return {
-    products: state.products
+    products: state.products,
+    allProducts: state.allProducts
   }
 }
 

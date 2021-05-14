@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import PaymentButton from './components/private/paymentPage.js';
 import NavBar from './components/navBar.js';
 import Nav from './components/nav.js';
+import Hero from './components/hero.js';
 
 import Clothing from './pages/clothing.js';
 import WomensClothing from './pages/womensClothing.js';
@@ -17,6 +18,7 @@ import Electronics from './pages/electronics.js';
 import Jewelery from './pages/jewelery.js';
 import Cart from './pages/cart.js';
 import ProductPage from './pages/productPage.js';
+import AllProducts from './pages/allProducts.js';
 import Home from './pages/home.js';
 
 function App(props) {
@@ -63,6 +65,7 @@ function App(props) {
     return (
       <div>
         <NavBar />
+        <Route exact path="/"><Hero /></Route>
         <div className="container">
           <div className="sidebar">
             <Nav />
@@ -76,6 +79,7 @@ function App(props) {
               <Route path="/jewelery"><Jewelery /></Route>
               <Route path="/cart"><Cart /></Route>
               <Route path="/products/:id"><ProductPage /></Route>
+              <Route path="/all-products"><AllProducts /></Route>
               <Route path="/"><Home /></Route>
             </Switch>
           </div>

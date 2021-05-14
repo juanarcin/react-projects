@@ -57,7 +57,8 @@ function Nav(props) {
 
       <NavMenu className={props.navOpen ? 'open' : 'closed'}>
         <ul>
-          <li onClick={props.toggleNav}><Link to="/">All Products</Link></li>
+          <li onClick={props.toggleNav}><Link to="/">Home</Link></li>
+          <li onClick={props.toggleNav}><Link to="/all-products">All Products</Link></li>
           <li onClick={props.toggleNav}><Link to="/clothing">All Clothing</Link></li>
           <li onClick={props.toggleNav}><Link to="/womens-clothing">Women's Clothing</Link></li>
           <li onClick={props.toggleNav}><Link to="/mens-clothing">Men's Clothing</Link></li>
