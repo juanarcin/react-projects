@@ -1,12 +1,21 @@
+import { useState } from 'react-redux';
 import { connect } from 'react-redux';
 import GoogleLogin from 'react-google-login';
 
 function LoginButton(props) {
+	const [loggedIn, login] = useState(false)
 
 	function responseGoogle(response){
 		console.log(response)
 		console.log(response.profileObj)
 	} 
+
+
+	function login(response){
+		// update redux
+		//update state
+	} 
+
 
 	if(props.user.loggedIn){
 		return <span>Welcome!</span>
