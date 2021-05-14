@@ -31,7 +31,7 @@ function CheckOut(props) {
   	return (
   		<div className="login-box">
   			<div className="login-option">
-  				<h3>Log in with Googles</h3>
+  				<h3>Log in with Google</h3>
   				<p>for fastest checkout experience, please log in with your google account</p>
 
 	        <GoogleLogin 
@@ -45,6 +45,7 @@ function CheckOut(props) {
   			<div className="guest-option">
   				<h3>Checkout as Guest</h3>
   				<p>You can also proceed as a guest</p>
+  				<button id="guest" onClick={() => shouldRedirect(true)}>Proceed as Guest</button>
 
   			</div>
   		</div>
