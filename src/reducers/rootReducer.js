@@ -4,7 +4,11 @@ const initState = {
 	products:{},
 	shoppingCart:[],
 	shoppingCartTotal: 0,
-	itemsInCart: 0
+	itemsInCart: 0,
+	user:{
+		logedIn: false,
+		name: null
+	}
 }
 const rootReducer = (state = initState, action) => {
 

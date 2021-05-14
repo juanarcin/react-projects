@@ -19,6 +19,7 @@ import Jewelery from './pages/jewelery.js';
 import Cart from './pages/cart.js';
 import ProductPage from './pages/productPage.js';
 import AllProducts from './pages/allProducts.js';
+import Login from './pages/login.js';
 import Home from './pages/home.js';
 
 function App(props) {
@@ -80,6 +81,7 @@ function App(props) {
               <Route path="/cart"><Cart /></Route>
               <Route path="/products/:id"><ProductPage /></Route>
               <Route path="/all-products"><AllProducts /></Route>
+              <Route path="/login"><Login /></Route>
               <Route path="/"><Home /></Route>
             </Switch>
           </div>

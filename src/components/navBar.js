@@ -6,6 +6,7 @@ import Nav from "./nav.js";
 import MobileNavToggle from "./mobileNavToggle.js";
 import MobileNav from "./mobileNav.js";
 import CartIcon from "./cartIcon.js";
+import LoginButton from "./loginButton.js";
 
 
 const Header = styled.header`
@@ -41,6 +42,7 @@ function NavBar(props) {
         <MobileNavToggle />
         <Logo><Link to="/">Juans Shop</Link></Logo>
         <CartIcon />
+        <LoginButton />
       </div>
       <MobileNav />
     </Header>

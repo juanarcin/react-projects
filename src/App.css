@@ -1,4 +1,14 @@
-
+#nav-login-button{
+	display:inline-block;
+	float: right;
+}
+#nav-login-button button[type="button"]{
+	background-color:transparent!important;
+	color:#fff!important;
+}
+#nav-login-button button[type="button"] div{
+	display: none;
+}
 .productBox{
 	display:block;
 	border: 1px solid #ccc;
@@ -234,7 +244,7 @@ background: rgb(250,181,50);
 background: radial-gradient(circle, rgba(250,181,50,1) 0%, rgba(252,140,70,1) 100%);
 text-align: center;
 padding: 15px;
-color:#fff;
+color:#ffe9c0;
 }
 #hero h2{
 	margin: 0;
@@ -244,7 +254,7 @@ color:#fff;
 	color: #fff;
 }
 #hero span{
-	color: #ad6329;
+	color: #fff;
 	font-weight: bold;
 }
 
