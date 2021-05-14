@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Link  } from "react-router-dom";
 import styled from 'styled-components';
 
 import Nav from "./nav.js";
@@ -13,6 +14,8 @@ const Header = styled.header`
   position: fixed;
   z-index: 16;
   background: #2b3a54;
+  padding: 0 15px;
+  box-sizing: border-box;
 `;
 const Logo = styled.h1`
   display:inline-block;
@@ -20,6 +23,10 @@ const Logo = styled.h1`
   padding: 0 0 0 30px;;
   font-size: 20px;
   color:#fff;
+  & a{
+    color:#fff;
+    text-decoration: none;
+  }
 }
   @media screen and (min-width: 600px){
     padding: 0;
@@ -32,7 +39,7 @@ function NavBar(props) {
     <Header>
       <div className="container">
         <MobileNavToggle />
-        <Logo>Juans Shop</Logo>
+        <Logo><Link to="/">Juans Shop</Link></Logo>
         <CartIcon />
       </div>
       <MobileNav />
