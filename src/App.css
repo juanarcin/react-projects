@@ -1,6 +1,7 @@
 #nav-login-button{
 	display:inline-block;
 	float: right;
+	cursor: pointer;
 }
 #nav-login-button button[type="button"]{
 	background-color:transparent!important;
@@ -9,10 +10,49 @@
 #nav-login-button button[type="button"] div{
 	display: none;
 }
+#nav-login-button.logged-in{
+    color: #fff;
+    position: relative;
+    top: 0px;
+    margin-right: 20px;
+    height: 40px;
+}
+#nav-login-button.logged-in svg{
+    color: #fbac37;
+    position: relative;
+    top: 4px;
+}
+#nav-login-button.logged-in img{
+width: auto;
+    height: 25px;
+    position: relative;
+    top: 8px;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+.logout{
+	position: relative;
+	background: #fbac37;
+	border: 1px solid #333;
+	text-align: center;
+	padding: 5px 0 10px;
+	border-radius: 10px;
+	opacity: 0;
+	top: -100px;
+	transition: .5s;
+}
+#nav-login-button.logged-in:hover .logout{
+	opacity: 1;
+	top: 15px;
+}
+.logout:hover{
+
+	background: #fc8d46;
+}
 .productBox{
 	display:block;
 	border: 1px solid #ccc;
-	    padding: 20px 20px;
+	padding: 20px 20px;
 	text-align: center;
 	max-width: 100%;
 	margin: 20px auto;

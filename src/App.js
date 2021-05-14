@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import './App.css';
 import styled from 'styled-components';
-import PaymentButton from './components/private/paymentPage.js';
 import NavBar from './components/navBar.js';
 import Nav from './components/nav.js';
 import Hero from './components/hero.js';
@@ -20,6 +19,7 @@ import Cart from './pages/cart.js';
 import ProductPage from './pages/productPage.js';
 import AllProducts from './pages/allProducts.js';
 import Login from './pages/login.js';
+import Checkout from './pages/checkout.js';
 import Home from './pages/home.js';
 
 function App(props) {
@@ -82,6 +82,7 @@ function App(props) {
               <Route path="/products/:id"><ProductPage /></Route>
               <Route path="/all-products"><AllProducts /></Route>
               <Route path="/login"><Login /></Route>
+              <Route path="/checkout"><Checkout /></Route>
               <Route path="/"><Home /></Route>
             </Switch>
           </div>

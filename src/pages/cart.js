@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 import Product from '../components/product.js';
 import { ImSad } from 'react-icons/im';
 
@@ -19,6 +20,7 @@ function Cart(props) {
           })}
         </ul>
         <div className="final-total">Total: ${parseFloat(props.total).toFixed(2)}</div>
+        <div className="proceed-to-checkout"><Link to="/checkout">Proceed to checkout</Link></div>
       </div>
     );
   }
