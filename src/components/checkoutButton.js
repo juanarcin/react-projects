@@ -25,11 +25,5 @@ function CheckoutButton(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    amount: state.shoppingCartTotal,
-  }
-}
 
-export default connect(mapStateToProps)(CheckoutButton);
+export default CheckoutButton;

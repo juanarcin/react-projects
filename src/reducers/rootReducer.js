@@ -11,7 +11,8 @@ const initState = {
 		profilePicture: null,
 		fullName: null,
 		email: null
-	}
+	},
+	isTrue: false
 }
 const rootReducer = (state = initState, action) => {
 
@@ -149,6 +150,15 @@ const rootReducer = (state = initState, action) => {
 			state.user.profilePicture = action.profilePicture;
 		}
 		console.log(state.user)
+		return{
+			...state,
+		}
+	}
+
+
+	if(action.type === 'TEST'){
+		console.log('TEST')
+		state.isTrue = action.value
 		return{
 			...state,
 		}
