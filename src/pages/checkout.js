@@ -4,27 +4,37 @@ import Keys from '../components/private/keys.js';
 
 import GoogleLogin from 'react-google-login';
 import { FaCaretDown } from 'react-icons/fa';
-import CheckoutButton from '../components/private/checkoutButton.js'
+import CheckoutButton from '../components/checkoutButton.js'
 
 function CheckOut(props) {
-  const [redirect, shouldRedirect] = useState(false)
+  const [redirect, shouldRedirect] = useState(props.user.loggedIn)
+  console.log(props.user)
 
   function login(response){
-    let name = response.profileObj.givenName;
+    let firstName = response.profileObj.givenName;
+    let fullName = response.profileObj.name;
     let email = response.profileObj.email;
     let avatar = response.profileObj.imageUrl;
     //update state
     shouldRedirect(true)
 
     // update redux
-    props.storeUser(name, email, avatar)
+    props.storeUser(firstName, fullName, email, avatar)
+
+    console.log(firstName, fullName, email, avatar)
+    console.log(props.user)
+    //update state
+    shouldRedirect(true)
   } 
 
 
+  console.log(props.user.loggedIn)
   if(redirect){
   	return (
-  		<div className="login-box">
-  		you're in
+  		<div className="center">
+  			{props.user.loggedIn ? <h3>Hello {props.user.fullName},</h3> : ''}
+  			<p>Thank you for shopping with us! You currently have {props.qty} items in your cart for a total of ${props.amount}</p>
+  			<CheckoutButton />
   		</div>
   	)
   }	else {
@@ -57,12 +67,14 @@ function CheckOut(props) {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    amount: state.shoppingCartTotal,
+    qty: state.itemsInCart
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    storeUser: (name, profilePicture) => { dispatch({type: 'LOGIN', name: name, profilePicture: profilePicture}) }
+    storeUser: (firstName, fullName, email, profilePicture) => { dispatch({type: 'LOGIN', firstName: firstName, fullName: fullName, profilePicture: profilePicture, email: email}) }
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CheckOut);
