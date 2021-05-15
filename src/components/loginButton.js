@@ -5,7 +5,7 @@ import GoogleLogin from 'react-google-login';
 import { FaCaretDown } from 'react-icons/fa';
 
 function LoginButton(props) {
-  const [loggedIn, setLogin] = useState(false)
+  const [loggedIn, setLogin] = useState(props.user.loggedIn)
   const [userFirstName, setUserFirstName] = useState(null)
   const [userFullName, setUserFullName] = useState(null)
   const [userProfilePicture, setUserProfilePicture] = useState(null)
@@ -22,12 +22,13 @@ function LoginButton(props) {
     let avatar = response.profileObj.imageUrl;
     console.log(response.profileObj)
     //update state
-    setLogin(true)
     setUserFirstName(firstName)
     setUserFullName(fullName)
     setUserProfilePicture(avatar)
     // update redux
     props.storeUser(firstName, fullName, email, avatar)
+    console.log('TEST')
+    setLogin(props.user.loggedIn)
   } 
 
 
@@ -42,7 +43,7 @@ function LoginButton(props) {
   } 
 
 
-  if(loggedIn){
+  if(props.user.loggedIn){
     return (
       <div id="nav-login-button" className="logged-in">
        <img src={userProfilePicture} alt="user profile picture" /> Welcome {userFirstName}  <FaCaretDown />

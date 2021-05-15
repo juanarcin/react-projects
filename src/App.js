@@ -21,6 +21,7 @@ import AllProducts from './pages/allProducts.js';
 import Login from './pages/login.js';
 import Checkout from './pages/checkout.js';
 import Home from './pages/home.js';
+import TEST from './components/TEST.js'
 
 function App(props) {
   const [loading, setLoading] = useState(true)
@@ -73,6 +74,7 @@ function App(props) {
           </div>
           <div className="content">
             <Switch>
+              <Route path="/TEST"><TEST /></Route>
               <Route path="/clothing"><Clothing /></Route>
               <Route path="/womens-clothing"><WomensClothing /></Route>
               <Route path="/mens-clothing"><MensClothing /></Route>
@@ -84,6 +86,7 @@ function App(props) {
               <Route path="/login"><Login /></Route>
               <Route path="/checkout"><Checkout /></Route>
               <Route path="/"><Home /></Route>
+              <Route path="/TEST"><TEST /></Route>
             </Switch>
           </div>
         </div>
