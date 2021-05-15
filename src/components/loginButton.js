@@ -6,7 +6,8 @@ import { FaCaretDown } from 'react-icons/fa';
 
 function LoginButton(props) {
   const [loggedIn, setLogin] = useState(false)
-  const [userName, setUserName] = useState(null)
+  const [userFirstName, setUserFirstName] = useState(null)
+  const [userFullName, setUserFullName] = useState(null)
   const [userProfilePicture, setUserProfilePicture] = useState(null)
 
   function responseGoogle(response){
@@ -15,23 +16,26 @@ function LoginButton(props) {
 
 
   function login(response){
-    let name = response.profileObj.givenName;
+    let fullName = response.profileObj.name;
+    let firstName = response.profileObj.givenName;
     let email = response.profileObj.email;
     let avatar = response.profileObj.imageUrl;
+    console.log(response.profileObj)
     //update state
     setLogin(true)
-    setUserName(name)
+    setUserFirstName(firstName)
+    setUserFullName(fullName)
     setUserProfilePicture(avatar)
     // update redux
-    props.storeUser(name, email, avatar)
-    console.log(response.profileObj)
+    props.storeUser(firstName, fullName, email, avatar)
   } 
 
 
   function logOut(){
     //update state
     setLogin(false)
-    setUserName(null)
+    setUserFirstName(null)
+    setUserFullName(null)
     setUserProfilePicture(null)
     // update redux
     props.storeUser('LOGOUT', null, null)
@@ -41,7 +45,7 @@ function LoginButton(props) {
   if(loggedIn){
     return (
       <div id="nav-login-button" className="logged-in">
-       <img src={userProfilePicture} alt="user profile picture" /> Welcome {userName}  <FaCaretDown />
+       <img src={userProfilePicture} alt="user profile picture" /> Welcome {userFirstName}  <FaCaretDown />
         <div className="logout" onClick={logOut}>
           Log out
         </div>
@@ -71,7 +75,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    storeUser: (name, email, profilePicture) => { dispatch({type: 'LOGIN', name: name, profilePicture: profilePicture, email: email}) }
+    storeUser: (firstName, fullName, email, profilePicture) => { dispatch({type: 'LOGIN', firstName: firstName, fullName: fullName, profilePicture: profilePicture, email: email}) }
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LoginButton);

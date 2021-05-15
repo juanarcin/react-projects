@@ -7,7 +7,7 @@ const initState = {
 	itemsInCart: 0,
 	user:{
 		loggedIn: false,
-		name: null,
+		firstName: null,
 		profilePicture: null,
 		fullName: null,
 		email: null
@@ -135,13 +135,16 @@ const rootReducer = (state = initState, action) => {
 
 
 	if(action.type === 'LOGIN'){
+		console.log(action.fullName)
 		if(action.name === 'LOGOUT'){
 			state.user.loggedIn = false;
-			state.user.name = null;
+			state.user.firstName = null;
+			state.user.fullName = null;
 			state.user.profilePicture = null;
 		} else {
 			state.user.loggedIn = true;
-			state.user.name = action.name;
+			state.user.firstName = action.firstName;
+			state.user.fullName = action.fullName;
 			state.user.email = action.email;
 			state.user.profilePicture = action.profilePicture;
 		}
