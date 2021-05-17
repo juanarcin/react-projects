@@ -3,6 +3,18 @@
 	float: right;
 	cursor: pointer;
 }
+.proceed-to-checkout{
+	text-align: center;
+}
+.proceed-to-checkout a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    background: #ff7601
+    ;
+    color: #fff;
+    margin: 20px;
+}
 #guest{background-color: rgb(255, 255, 255);
     display: inline-flex;
     align-items: center;
@@ -19,6 +31,17 @@
     height: 45px;
     padding: 0 10px;
 }
+.stripe-note{
+margin: 10px auto 0;
+    padding: 10px;
+    max-width: 400px;
+    background: #fbf1ac;
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    width: 200px;
+
+}
 .login-box{
 	border: 1px solid #ccc;
 	padding: 20px;
@@ -27,34 +50,48 @@
 	margin: 20px auto;
 }
 .login-option{
-	padding-bottom: 20px;border-bottom: 1px solid #ccc;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #ccc;
 }
-#nav-login-button button[type="button"]{
+header #login-button{float: right; border: none;}
+header #login-button button[type="button"]{
 	background-color:transparent!important;
 	color:#fff!important;
 }
-#nav-login-button button[type="button"] div{
+header  #login-button button[type="button"] div{
 	display: none;
 }
-#nav-login-button.logged-in{
+header #logout-button{
+	float: right;
+	display:inline-block;
+	color:#fff;
+	cursor: pointer;
+}
+header .logged-in{
     color: #fff;
     position: relative;
     top: 0px;
     margin-right: 20px;
+    padding-top: 8px;
     height: 40px;
+    display:inline-block;
+    float: right;
 }
-#nav-login-button.logged-in svg{
-    color: #fbac37;
-    position: relative;
-    top: 4px;
-}
-#nav-login-button.logged-in img{
+header .logged-in img{
 width: auto;
     height: 25px;
     position: relative;
     top: 8px;
     border-radius: 10px;
     margin-right: 15px;
+}
+header .logged-in span{
+	transition: all ease .5s;
+	color:#fbcb77;
+	cursor: pointer;
+}
+header .logged-in span:hover{
+	color:#fab233;
 }
 .logout{
 	position: relative;
@@ -196,6 +233,9 @@ header .container{
 .left{
 	text-align: left;
 }
+.right{
+	text-align: right;
+}
 .sad{
 	font-size: 40px;
 }
@@ -223,7 +263,7 @@ header .container{
 }
 
 .final-total {
-  background: #ff7601;
+  background: #2b3a54;
   color: #fff;
   text-align: right;
   font-weight: bold;
@@ -244,6 +284,9 @@ header .container{
 }
 .edit-cart{
 	text-align: right;
+}
+.strong{
+	font-weight: bold;
 }
 .qty{
 	width: 30px;
@@ -322,6 +365,17 @@ color:#ffe9c0;
 #hero span{
 	color: #fff;
 	font-weight: bold;
+}
+
+.checkout-container{
+    border: 1px solid #ccc;
+    padding: 10px 40px 40px;
+    margin: 60px auto 0;
+    max-width: 400px;
+}
+.checkout-container img{
+	margin-top: -60px;
+	border-radius: 50px;
 }
 
 @media screen and (min-width: 600px){

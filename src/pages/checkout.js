@@ -1,40 +1,31 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import Keys from '../components/private/keys.js';
 
 import LoginButton from '../components/loginButton.js';
 import { FaCaretDown } from 'react-icons/fa';
-import CheckoutButton from '../components/checkoutButton.js'
+import CheckoutButton from '../components/checkoutButton.js';
+import StripeNote from '../components/stripeNote.js';
 
 function CheckOut(props) {
-  const [redirect, shouldRedirect] = useState(props.user.loggedIn)
-  console.log(props.user)
+  const [redirect, shouldRedirect] = useState()
 
-  function login(response){
-    let firstName = response.profileObj.givenName;
-    let fullName = response.profileObj.name;
-    let email = response.profileObj.email;
-    let avatar = response.profileObj.imageUrl;
-    //update state
+  function startRedirect(){
     shouldRedirect(true)
-
-    // update redux
-    props.storeUser(firstName, fullName, email, avatar)
-
-    console.log(firstName, fullName, email, avatar)
-    console.log(props.user)
-    //update state
-    shouldRedirect(true)
-  } 
+  }
 
 
-  console.log(props.user.loggedIn)
-  if(redirect){
+  console.log(props.logedin)
+
+  if(props.logedin || redirect){
   	return (
   		<div className="center">
-  			{props.user.loggedIn ? <h3>Hello {props.user.fullName},</h3> : ''}
-  			<p>Thank you for shopping with us! You currently have {props.qty} items in your cart for a total of ${props.amount}</p>
-  			<CheckoutButton user={props.user} amount={props.amount} />
+        <div className="checkout-container">
+          <img src={props.avatar} />
+    			{props.logedin ? <h3>Hello {props.name},</h3> : ''}
+    			<p>Thank you for shopping with us! You currently have {props.qty} items in your cart for a total of ${parseFloat(props.amount).toFixed(2)}</p>
+    			<CheckoutButton email={props.email} name={props.name} amount={props.amount} avatar={props.avatar}/>
+        </div>
+        <StripeNote />
   		</div>
   	)
   }	else {
@@ -49,7 +40,7 @@ function CheckOut(props) {
   			<div className="guest-option">
   				<h3>Checkout as Guest</h3>
   				<p>You can also proceed as a guest</p>
-  				<button id="guest" onClick={() => shouldRedirect(true)}>Proceed as Guest</button>
+  				<button id="guest" onClick={() => startRedirect()}>Proceed as Guest</button>
   			</div>
   		</div>
   	)
@@ -59,15 +50,12 @@ function CheckOut(props) {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
-    amount: state.shoppingCartTotal,
-    qty: state.itemsInCart
+    logedin: state.user.loggedIn,
+    name: state.user.fullName,
+    email: state.user.email,
+    avatar: state.user.profilePicture,
+    amount: state.shoppingCartTotal
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    storeUser: (firstName, fullName, email, profilePicture) => { dispatch({type: 'LOGIN', firstName: firstName, fullName: fullName, profilePicture: profilePicture, email: email}) }
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(CheckOut);
+export default connect(mapStateToProps)(CheckOut);
