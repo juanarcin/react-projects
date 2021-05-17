@@ -158,8 +158,14 @@ const rootReducer = (state = initState, action) => {
 
 
 	if(action.type === 'TEST'){
-		console.log('TEST')
-		state.isTrue = action.value
+		console.log(action.data, action.data.firstName)
+		state.user.loggedIn = action.loggedIn
+		state.user.firstName = action.data.givenName;
+		state.user.fullName = action.data.name;
+		state.user.email = action.data.email;
+		state.user.profilePicture = action.data.imageUrl;
+
+		console.log(state)
 		return{
 			...state,
 		}

@@ -63,7 +63,7 @@ function Nav(props) {
           <li onClick={props.toggleNav}><Link to="/womens-clothing">Women's Clothing</Link></li>
           <li onClick={props.toggleNav}><Link to="/mens-clothing">Men's Clothing</Link></li>
           <li onClick={props.toggleNav}><Link to="/electronics">Electronics</Link></li>
-          <li onClick={props.toggleNav}><Link to="/jewelery">Jewelery</Link></li>
+          <li onClick={props.toggleNav}><Link to="/jewelry">Jewelry</Link></li>
           <li onClick={props.toggleNav}><Link to="/cart">Shopping Cart</Link></li>
         </ul>
       </NavMenu>
