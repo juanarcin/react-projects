@@ -22,6 +22,7 @@ import Login from './pages/login.js';
 import Checkout from './pages/checkout.js';
 import Home from './pages/home.js';
 import TEST from './components/TEST.js'
+import Test from './components/reduxTest.js'
 
 function App(props) {
   const [loading, setLoading] = useState(true)
