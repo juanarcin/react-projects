@@ -141,6 +141,7 @@ const rootReducer = (state = initState, action) => {
 			state.user.loggedIn = false;
 			state.user.firstName = null;
 			state.user.fullName = null;
+			state.user.email = null;
 			state.user.profilePicture = null;
 		} else {
 			state.user.loggedIn = true;
