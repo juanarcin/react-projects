@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 
 import LoginButton from '../components/loginButton.js';
-import { FaCaretDown } from 'react-icons/fa';
 import CheckoutButton from '../components/checkoutButton.js';
 import StripeNote from '../components/stripeNote.js';
 
@@ -20,7 +19,7 @@ function CheckOut(props) {
   	return (
   		<div className="center">
         <div className="checkout-container">
-          <img src={props.avatar} />
+          {props.avatar === null ? '' : <img src={props.avatar} alt="profile" /> }
     			{props.logedin ? <h3>Hello {props.name},</h3> : ''}
     			<p>Thank you for shopping with us! You currently have {props.qty} items in your cart for a total of ${parseFloat(props.amount).toFixed(2)}</p>
     			<CheckoutButton email={props.email} name={props.name} amount={props.amount} avatar={props.avatar}/>

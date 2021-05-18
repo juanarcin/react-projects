@@ -1,4 +1,3 @@
-import {useEffect} from 'react';
 import { connect } from 'react-redux';
 import Product from '../components/product.js';
 
@@ -10,6 +9,8 @@ function MensClothing(props) {
           return (
             <Product product={product} key={product.id} />
           )
+        } else {
+          return null
         }
       })}
     </ul>

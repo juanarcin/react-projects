@@ -11,6 +11,7 @@ function ReduxTest(props) {
     // update state and redux
     props.updateRedux(response.profileObj, true)
     setValue(props.logedin)
+    console.log(isValueTrue)
 
     // store user info
   }

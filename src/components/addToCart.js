@@ -1,8 +1,5 @@
 import {useState} from 'react';
 import { connect } from 'react-redux';
-import Product from '../components/product.js';
-
-import { FaInfoCircle } from 'react-icons/fa';
 
 function AddToCart(props) {
 
@@ -20,6 +17,7 @@ function AddToCart(props) {
 
       // just to trigger re-render
       addToCart(id)
+      console.log(inCart)
     }
   }
 

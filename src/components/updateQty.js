@@ -6,7 +6,7 @@ function Product(props) {
 
   function handleUpdate(value, id){
     props.updateQty(value, id)
-    console.log(props.product)
+    console.log(props.product, price)
     updatePrice(value)
   }
   return (

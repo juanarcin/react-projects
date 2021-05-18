@@ -1,15 +1,11 @@
-import {useState} from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
-import { FaInfoCircle, FaTrash } from 'react-icons/fa';
+import { FaInfoCircle } from 'react-icons/fa';
 
 import AddToCartButton from '../components/addToCart.js';
-import ProductContent from '../components/productContent.js';
 
 function Product(props) {
-  const [inCart, addToCart] = useState()
-  const [price, updatePrice] = useState(props.product.total)
     let total = 0;
 
   function storePrices(){
@@ -23,27 +19,10 @@ function Product(props) {
     let prices = storePrices()
     let finalPrice = prices.reduce((a, b) => a + b, 0)
     total = finalPrice;
+    console.log( total)
   }
   getTotal()
 
-  let imageStyles = {
-    width: 100
-  }
-
-  function handleDelete(id){
-    props.deleteProduct(id)
-    getTotal();
-  }
-  function handleUpdate(value, id){
-    props.updateQty(value, id)
-    updatePrice(value)
-  }
-  function addItemToCart(product, id){
-    if(!props.product.inCart){
-      props.addToCart(product)
-      addToCart(id)
-    }
-  }
   return (
     <div className="product-info">
       <div className="content-width title">{props.product.title}</div>

@@ -1,13 +1,12 @@
 import { connect } from 'react-redux';
 import Product from '../components/product.js';
 
-function Clothing(props) {
+function Jewelery(props) {
   return(
     <ul id="products-list">
-      {props.products.clothing.map( product => {
+      {props.products.jewelry.map( product => {
         return (
-          
-            <Product product={product} key={product.id} />
+          <Product product={product} key={product.id} />
         )
       })}
     </ul>
@@ -20,4 +19,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Clothing);
+export default connect(mapStateToProps)(Jewelery);

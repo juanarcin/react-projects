@@ -1,11 +1,6 @@
-import {useState} from 'react';
-import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
+import { FaTrash } from 'react-icons/fa';
 
-import { FaInfoCircle, FaTrash } from 'react-icons/fa';
-
-import AddToCartButton from '../components/addToCart.js';
-import ProductContent from '../components/productContent.js';
 import Qty from '../components/updateQty.js';
 
 function Product(props) {

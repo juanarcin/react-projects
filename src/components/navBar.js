@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { Link  } from "react-router-dom";
 import styled from 'styled-components';
 
-import Nav from "./nav.js";
 import MobileNavToggle from "./mobileNavToggle.js";
 import MobileNav from "./mobileNav.js";
 import CartIcon from "./cartIcon.js";
