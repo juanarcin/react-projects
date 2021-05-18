@@ -1,4 +1,3 @@
-import {useEffect} from 'react';
 import { connect } from 'react-redux';
 import Product from '../components/product.js';
 
@@ -9,7 +8,9 @@ function WomensClothing(props) {
         if(product.category === 'women\'s clothing') {
           return (
             <Product product={product} key={product.id} />
-          )
+          ) 
+        } else {
+          return null
         }
       })}
     </ul>
